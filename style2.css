@@ -1,0 +1,201 @@
+/* =========================================================
+   QANOT MARKET — RESPONSIVE BREAKPOINTS
+   Optimized for 1920px, 1440px, 1366px, 768px, 390px, 375px, 360px
+   ========================================================= */
+
+/* Large Desktop (1440px - 1920px) */
+@media (min-width: 1400px) {
+  .container-xl {
+    max-width: 1280px;
+  }
+}
+
+/* Laptop (1200px - 1399px) */
+@media (max-width: 1399.98px) {
+  .category-nav-bar {
+    gap: 8px;
+  }
+  .cat-nav-item {
+    font-size: 13px;
+  }
+}
+
+/* Small Laptop / Large Tablet (992px - 1199px) */
+@media (max-width: 1199.98px) {
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .hero-slide {
+    height: 360px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .hero-slide-img {
+    height: 280px;
+  }
+}
+
+/* Tablet (768px - 991.98px) */
+@media (max-width: 991.98px) {
+  body {
+    padding-bottom: 64px;
+  }
+
+  .header-main-row {
+    padding: 10px 0;
+  }
+
+  .brand-text {
+    font-size: 21px;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+  .hero-slide {
+    height: 290px;
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-slide-img {
+    height: 220px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+}
+
+/* Mobile Devices (<= 767.98px) */
+@media (max-width: 767.98px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 10px;
+  }
+
+  .hero-slide {
+    height: 210px;
+  }
+
+  .hero-title {
+    font-size: 18px;
+  }
+
+  .btn-hero-cta {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .hero-slide-img {
+    height: 155px;
+    border-radius: 12px;
+  }
+
+  .hero-control {
+    display: none;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .btn-show-more {
+    width: 100%;
+    min-width: auto;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .product-card-title {
+    font-size: 12px;
+    min-height: 32px;
+  }
+
+  .price-current {
+    font-size: 14px;
+  }
+
+  .btn-card-cart {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .btn-card-fav {
+    width: 28px;
+    height: 28px;
+    top: 7px;
+    right: 7px;
+    font-size: 14px;
+  }
+
+  .mobile-city-btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+}
+
+/* Compact Mobile (360px - 390px) */
+@media (max-width: 390px) {
+  .brand-text {
+    display: none;
+  }
+
+  .search-form {
+    height: 36px;
+  }
+
+  .search-input {
+    font-size: 13px;
+    padding-left: 10px;
+  }
+
+  .btn-search-submit {
+    width: 44px;
+  }
+
+  .hero-slide {
+    height: 185px;
+  }
+
+  .hero-title {
+    font-size: 16px;
+  }
+
+  .hero-pill {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .hero-slide-img {
+    height: 130px;
+  }
+
+  .quick-cat-card {
+    flex: 0 0 108px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .promo-mini-img {
+    width: 84px;
+    height: 74px;
+  }
+}

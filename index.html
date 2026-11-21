@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qanot Market — Onlayn do‘kon va tezkor yetkazib berish</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./style2.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="top-utility-bar d-none d-lg-block">
+    <div class="container-xl d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-4">
+        <button type="button" class="location-trigger btn-reset d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#locationModal">
+          <i class="bi bi-geo-alt"></i>
+          <span>Shahar:</span>
+          <strong class="selected-city-label text-decoration-underline">Toshkent</strong>
+        </button>
+        <a href="catalog.html" class="top-link">Topshirish punktlari</a>
+      </div>
+      <div class="top-promo-text text-muted">
+        Buyurtmangizni 1 kunda bepul yetkazib beramiz!
+      </div>
+      <div class="d-flex align-items-center gap-4">
+        <a href="#footerSection" class="top-link">Savol-javoblar</a>
+        <a href="cart.html" class="top-link">Buyurtmalarim</a>
+        <div class="lang-switcher d-flex align-items-center gap-1">
+          <span class="lang-badge">UZ</span>
+          <span class="fw-medium">O‘zbekcha</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="site-header sticky-top" id="siteHeader">
+    <div class="container-xl">
+      <div class="header-main-row d-flex align-items-center justify-content-between gap-2 gap-lg-3">
+        <!-- Brand Logo -->
+        <a href="index.html" class="brand-logo d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-bag-heart-fill"></i>
+          </div>
+          <span class="brand-text">qanot</span>
+        </a>
+
+        <!-- Catalog Toggle Button (Desktop) -->
+        <button type="button" class="btn btn-catalog d-none d-lg-flex align-items-center gap-2" id="catalogToggleBtn" aria-expanded="false">
+          <i class="bi bi-collection catalog-icon-closed"></i>
+          <i class="bi bi-x-lg catalog-icon-open d-none"></i>
+          <span>Katalog</span>
+        </button>
+
+        <!-- Search Wrapper -->
+        <div class="header-search-wrapper flex-grow-1 position-relative" id="searchWrapper">
+          <form class="search-form d-flex align-items-center" id="headerSearchForm" autocomplete="off">
+            <input
+              type="text"
+              class="form-control search-input"
+              id="headerSearchInput"
+              placeholder="Mahsulotlar va turkumlar izlash"
+              aria-label="Mahsulotlarni izlash"
+            >
+            <button type="button" class="btn-clear-search d-none" id="clearSearchBtn" aria-label="Tozalash">
+              <i class="bi bi-x-circle-fill"></i>
+            </button>
+            <button type="submit" class="btn btn-search-submit" aria-label="Qidirish">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+
+          <!-- Search Suggestions & History Dropdown -->
+          <div class="search-dropdown shadow-lg" id="searchDropdown">
+            <div class="search-dropdown-inner" id="searchDropdownContent">
+              <!-- Populated dynamically by js/search.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Header Action Buttons (Desktop) -->
+        <div class="header-actions d-none d-lg-flex align-items-center gap-2">
+          <button type="button" class="header-action-btn" id="profileBtn" data-bs-toggle="modal" data-bs-target="#authModal">
+            <i class="bi bi-person"></i>
+            <span id="profileBtnLabel">Kirish</span>
+          </button>
+
+          <a href="favorites.html" class="header-action-btn position-relative">
+            <i class="bi bi-heart"></i>
+            <span>Saralangan</span>
+            <span class="action-badge d-none" id="headerFavCount">0</span>
+          </a>
+
+          <a href="cart.html" class="header-action-btn position-relative" id="headerCartBtn">
+            <i class="bi bi-bag"></i>
+            <span>Savat</span>
+            <span class="action-badge d-none" id="headerCartCount">0</span>
+          </a>
+        </div>
+
+        <!-- Mobile City Button -->
+        <button type="button" class="btn btn-sm btn-light d-lg-none mobile-city-btn" data-bs-toggle="modal" data-bs-target="#locationModal">
+          <i class="bi bi-geo-alt-fill text-primary-brand"></i>
+          <span class="selected-city-label">Toshkent</span>
+        </button>
+      </div>
+
+      <!-- Horizontal Category Navigation Bar -->
+      <nav class="category-nav-bar d-none d-lg-flex align-items-center justify-content-between" aria-label="Asosiy toifalar">
+        <a href="catalog.html?badge=sale" class="cat-nav-item cat-nav-highlight">
+          <i class="bi bi-lightning-charge-fill text-warning"></i>
+          <span>Hafta tovarlari</span>
+        </a>
+        <a href="catalog.html?category=electronics" class="cat-nav-item">Elektronika</a>
+        <a href="catalog.html?category=appliances" class="cat-nav-item">Maishiy texnika</a>
+        <a href="catalog.html?category=clothing" class="cat-nav-item">Kiyim</a>
+        <a href="catalog.html?category=shoes" class="cat-nav-item">Poyabzallar</a>
+        <a href="catalog.html?category=accessories" class="cat-nav-item">Aksessuarlar</a>
+        <a href="catalog.html?category=beauty" class="cat-nav-item">Go‘zallik va parvarish</a>
+        <a href="catalog.html?category=health" class="cat-nav-item">Salomatlik</a>
+        <a href="catalog.html?category=home" class="cat-nav-item">Uy-ro‘zg‘or buyumlari</a>
+        <a href="catalog.html?category=auto" class="cat-nav-item">Avtotovarlar</a>
+        <button type="button" class="cat-nav-more btn-reset" id="moreCategoriesBtn">
+          <span>Yana</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mega Catalog Dropdown Menu -->
+    <div class="mega-catalog-menu" id="megaCatalogMenu">
+      <div class="container-xl py-4">
+        <div class="row g-4">
+          <div class="col-lg-3 border-end">
+            <ul class="list-unstyled mega-cat-list mb-0" id="megaCatSidebar">
+              <!-- Populated by js/main.js -->
+            </ul>
+          </div>
+          <div class="col-lg-9">
+            <div id="megaCatSubcontent">
+              <!-- Populated dynamically on hover -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Backdrop for Search & Catalog -->
+  <div class="ui-backdrop" id="uiBackdrop"></div>
+
+  <!-- Main Content -->
+  <main class="main-content pb-5">
+
+    <!-- Hero Promotional Carousel -->
+    <section class="hero-section pt-3 pt-lg-4">
+      <div class="container-xl">
+        <div id="heroPromoCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+          <div class="carousel-indicators hero-indicators">
+            <button type="button" data-bs-target="#heroPromoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroPromoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroPromoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#heroPromoCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>
+          <div class="carousel-inner rounded-4 overflow-hidden">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <a href="catalog.html?category=electronics" class="hero-slide-link d-block">
+                <div class="hero-slide hero-gradient-1 d-flex align-items-center">
+                  <div class="row w-100 align-items-center g-0 px-4 px-md-5">
+                    <div class="col-7 col-md-6 text-white z-2">
+                      <span class="hero-pill mb-2 d-inline-block">Katta chegirmalar haftaligi</span>
+                      <h1 class="hero-title fw-bold mb-2 mb-md-3">Yangi avlod smartfonlari va gadjetlar</h1>
+                      <p class="hero-subtitle d-none d-sm-block mb-3">0% boshlang‘ich to‘lov bilan 12 oyga muddatli to‘lov imkoniyati</p>
+                      <span class="btn btn-light btn-hero-cta fw-semibold">Xarid qilish <i class="bi bi-arrow-right ms-1"></i></span>
+                    </div>
+                    <div class="col-5 col-md-6 text-end">
+                      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80" alt="Smartfonlar aksiyasi" class="hero-slide-img">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <a href="catalog.html?category=appliances" class="hero-slide-link d-block">
+                <div class="hero-slide hero-gradient-2 d-flex align-items-center">
+                  <div class="row w-100 align-items-center g-0 px-4 px-md-5">
+                    <div class="col-7 col-md-6 text-white z-2">
+                      <span class="hero-pill mb-2 d-inline-block">Uy uchun qulaylik</span>
+                      <h2 class="hero-title fw-bold mb-2 mb-md-3">Aqlli maishiy texnika -45% gacha</h2>
+                      <p class="hero-subtitle d-none d-sm-block mb-3">Robot changyutgichlar, qahva mashinalari va oshxona texnikasi</p>
+                      <span class="btn btn-warning btn-hero-cta fw-semibold">To‘plamni ko‘rish <i class="bi bi-arrow-right ms-1"></i></span>
+                    </div>
+                    <div class="col-5 col-md-6 text-end">
+                      <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80" alt="Maishiy texnika" class="hero-slide-img">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+              <a href="catalog.html?category=clothing" class="hero-slide-link d-block">
+                <div class="hero-slide hero-gradient-3 d-flex align-items-center">
+                  <div class="row w-100 align-items-center g-0 px-4 px-md-5">
+                    <div class="col-7 col-md-6 text-dark z-2">
+                      <span class="badge bg-dark text-white mb-2">Yangi kolleksiya</span>
+                      <h2 class="hero-title fw-bold mb-2 mb-md-3">Mavsumiy kiyim va poyabzallar</h2>
+                      <p class="hero-subtitle d-none d-sm-block mb-3">Kiyib ko‘rish imkoniyati bilan topshirish punktlariga bepul yetkazish</p>
+                      <span class="btn btn-dark btn-hero-cta fw-semibold">Tanlash <i class="bi bi-arrow-right ms-1"></i></span>
+                    </div>
+                    <div class="col-5 col-md-6 text-end">
+                      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80" alt="Kiyim kolleksiyasi" class="hero-slide-img">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+              <a href="catalog.html?category=beauty" class="hero-slide-link d-block">
+                <div class="hero-slide hero-gradient-4 d-flex align-items-center">
+                  <div class="row w-100 align-items-center g-0 px-4 px-md-5">
+                    <div class="col-7 col-md-6 text-white z-2">
+                      <span class="hero-pill mb-2 d-inline-block">100% Original</span>
+                      <h2 class="hero-title fw-bold mb-2 mb-md-3">Parfyumeriya va teri parvarishi</h2>
+                      <p class="hero-subtitle d-none d-sm-block mb-3">Mashhur jahon brendlaridan maxsus chegirmalar</p>
+                      <span class="btn btn-light btn-hero-cta fw-semibold">Xaridga o‘tish <i class="bi bi-arrow-right ms-1"></i></span>
+                    </div>
+                    <div class="col-5 col-md-6 text-end">
+                      <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80" alt="Go'zallik mahsulotlari" class="hero-slide-img">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev hero-control" type="button" data-bs-target="#heroPromoCarousel" data-bs-slide="prev">
+            <span class="hero-control-circle"><i class="bi bi-chevron-left"></i></span>
+            <span class="visually-hidden">Oldingi</span>
+          </button>
+          <button class="carousel-control-next hero-control" type="button" data-bs-target="#heroPromoCarousel" data-bs-slide="next">
+            <span class="hero-control-circle"><i class="bi bi-chevron-right"></i></span>
+            <span class="visually-hidden">Keyingi</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Promo Pills / Popular Categories -->
+    <section class="quick-categories-section pt-4">
+      <div class="container-xl">
+        <div class="quick-cat-scroller d-flex gap-3 overflow-x-auto pb-2" id="quickCategoriesRow">
+          <a href="catalog.html?badge=sale" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-purple"><i class="bi bi-percent text-primary-brand"></i></div>
+            <span>Chegirmalar</span>
+          </a>
+          <a href="catalog.html?category=electronics" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-blue"><i class="bi bi-phone text-primary"></i></div>
+            <span>Smartfonlar</span>
+          </a>
+          <a href="catalog.html?category=appliances" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-amber"><i class="bi bi-tv text-warning"></i></div>
+            <span>Texnika</span>
+          </a>
+          <a href="catalog.html?category=clothing" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-pink"><i class="bi bi-bag-check text-danger"></i></div>
+            <span>Kiyimlar</span>
+          </a>
+          <a href="catalog.html?category=beauty" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-rose"><i class="bi bi-stars text-danger"></i></div>
+            <span>Go‘zallik</span>
+          </a>
+          <a href="catalog.html?category=home" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-green"><i class="bi bi-house-heart text-success"></i></div>
+            <span>Uy uchun</span>
+          </a>
+          <a href="catalog.html?category=auto" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-slate"><i class="bi bi-car-front text-dark"></i></div>
+            <span>Avtotovarlar</span>
+          </a>
+          <a href="catalog.html?category=accessories" class="quick-cat-card">
+            <div class="quick-cat-icon bg-soft-indigo"><i class="bi bi-smartwatch text-primary-brand"></i></div>
+            <span>Aksessuarlar</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Recommended / Popular Products ("Mashhur") -->
+    <section class="products-section pt-4 pt-lg-5">
+      <div class="container-xl">
+        <div class="section-header d-flex align-items-center justify-content-between mb-3">
+          <a href="catalog.html" class="section-title-link d-inline-flex align-items-center gap-2 text-decoration-none">
+            <h2 class="section-title mb-0">Mashhur</h2>
+            <i class="bi bi-chevron-right fs-5"></i>
+          </a>
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted small d-none d-sm-inline">Eng ko‘p xarid qilinayotgan tovarlar</span>
+          </div>
+        </div>
+
+        <div class="product-grid" id="popularProductsGrid">
+          <!-- Skeleton placeholders before JS renders -->
+          <div class="product-card-skeleton"></div>
+          <div class="product-card-skeleton"></div>
+          <div class="product-card-skeleton"></div>
+          <div class="product-card-skeleton"></div>
+          <div class="product-card-skeleton"></div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="button" class="btn btn-show-more" id="loadMorePopularBtn">
+            Yana ko‘rsatish 10
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mid-Page Advertising Banners -->
+    <section class="mid-banners-section pt-4 pt-lg-5">
+      <div class="container-xl">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <a href="catalog.html?category=electronics" class="promo-banner-card promo-banner-1 d-flex align-items-center justify-content-between p-4 rounded-4 text-decoration-none">
+              <div>
+                <span class="badge bg-warning text-dark mb-2">Muddatli to‘lov 0-0-12</span>
+                <h3 class="h4 fw-bold text-white mb-1">Noutbuk va kompyuterlar</h3>
+                <p class="text-white-50 small mb-0">Ish va o‘yin uchun kuchli modellar</p>
+              </div>
+              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" alt="Noutbuklar" class="promo-mini-img rounded-3">
+            </a>
+          </div>
+          <div class="col-12 col-md-6">
+            <a href="catalog.html?category=home" class="promo-banner-card promo-banner-2 d-flex align-items-center justify-content-between p-4 rounded-4 text-decoration-none">
+              <div>
+                <span class="badge bg-light text-primary-brand mb-2">Katta aksiya</span>
+                <h3 class="h4 fw-bold text-white mb-1">Oshxona va uy jihozlari</h3>
+                <p class="text-white-50 small mb-0">Sifatli idishlar va dekor to‘plamlari</p>
+              </div>
+              <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=400&q=80" alt="Uy jihozlari" class="promo-mini-img rounded-3">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Discount Products ("Chegirmalar va aksiyalar") -->
+    <section class="products-section pt-4 pt-lg-5">
+      <div class="container-xl">
+        <div class="section-header d-flex align-items-center justify-content-between mb-3">
+          <a href="catalog.html?badge=sale" class="section-title-link d-inline-flex align-items-center gap-2 text-decoration-none">
+            <h2 class="section-title mb-0">Chegirmalar va aksiyalar</h2>
+            <i class="bi bi-chevron-right fs-5"></i>
+          </a>
+          <span class="badge bg-sale-soft text-primary-brand fw-semibold px-3 py-2 rounded-pill">-50% gacha</span>
+        </div>
+
+        <div class="product-grid" id="discountProductsGrid">
+          <!-- Rendered by js/main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Popular Collections -->
+    <section class="collections-section pt-4 pt-lg-5">
+      <div class="container-xl">
+        <div class="section-header mb-3">
+          <h2 class="section-title mb-0">Ommabop to‘plamlar</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <a href="catalog.html?category=electronics" class="collection-card d-block rounded-4 overflow-hidden text-decoration-none">
+              <div class="collection-img-wrap">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt="Audio va quloqchinlar">
+              </div>
+              <div class="p-3 bg-light-surface">
+                <h3 class="h6 fw-semibold text-dark mb-1">Audio va quloqchinlar</h3>
+                <span class="small text-muted">120+ mahsulot</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-3">
+            <a href="catalog.html?category=appliances" class="collection-card d-block rounded-4 overflow-hidden text-decoration-none">
+              <div class="collection-img-wrap">
+                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=500&q=80" alt="Oshxona yordamchilari">
+              </div>
+              <div class="p-3 bg-light-surface">
+                <h3 class="h6 fw-semibold text-dark mb-1">Oshxona yordamchilari</h3>
+                <span class="small text-muted">85+ mahsulot</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-3">
+            <a href="catalog.html?category=shoes" class="collection-card d-block rounded-4 overflow-hidden text-decoration-none">
+              <div class="collection-img-wrap">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Sport poyabzallari">
+              </div>
+              <div class="p-3 bg-light-surface">
+                <h3 class="h6 fw-semibold text-dark mb-1">Sport poyabzallari</h3>
+                <span class="small text-muted">210+ mahsulot</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-3">
+            <a href="catalog.html?category=accessories" class="collection-card d-block rounded-4 overflow-hidden text-decoration-none">
+              <div class="collection-img-wrap">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="Smart soatlar">
+              </div>
+              <div class="p-3 bg-light-surface">
+                <h3 class="h6 fw-semibold text-dark mb-1">Smart soatlar va brasletlar</h3>
+                <span class="small text-muted">95+ mahsulot</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Best-selling Products ("Xit savdolar") -->
+    <section class="products-section pt-4 pt-lg-5">
+      <div class="container-xl">
+        <div class="section-header d-flex align-items-center justify-content-between mb-3">
+          <a href="catalog.html?sort=popular" class="section-title-link d-inline-flex align-items-center gap-2 text-decoration-none">
+            <h2 class="section-title mb-0">Xit savdolar</h2>
+            <i class="bi bi-chevron-right fs-5"></i>
+          </a>
+        </div>
+
+        <div class="product-grid" id="bestsellerProductsGrid">
+          <!-- Rendered by js/main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Recently Viewed Products (Shown dynamically if user viewed items) -->
+    <section class="products-section pt-4 pt-lg-5 d-none" id="recentlyViewedSection">
+      <div class="container-xl">
+        <div class="section-header d-flex align-items-center justify-content-between mb-3">
+          <h2 class="section-title mb-0">Yaqinda ko‘rilgan mahsulotlar</h2>
+          <button type="button" class="btn btn-sm btn-link text-muted text-decoration-none" id="clearHistoryBtn">Tarixni tozalash</button>
+        </div>
+        <div class="product-grid" id="recentlyViewedGrid">
+          <!-- Rendered by js/main.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer border-top pt-5 pb-5 pb-lg-4" id="footerSection">
+    <div class="container-xl">
+      <div class="row g-4 pb-4">
+        <div class="col-6 col-md-3">
+          <h3 class="footer-heading">Biz haqimizda</h3>
+          <ul class="list-unstyled footer-links">
+            <li><a href="catalog.html">Topshirish punktlari</a></li>
+            <li><a href="#footerSection">Vakansiyalar</a></li>
+            <li><a href="#footerSection">Hamkorlik dasturi</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="footer-heading">Foydalanuvchilarga</h3>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#footerSection">Biz bilan bog‘lanish</a></li>
+            <li><a href="#footerSection">Savol-javob</a></li>
+            <li><a href="cart.html">To‘lov va yetkazib berish</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="footer-heading">Tadbirkorlarga</h3>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#footerSection">Qanot Marketda soting</a></li>
+            <li><a href="#footerSection">Sotuvchi kabinetiga kirish</a></li>
+            <li><a href="#footerSection">Topshirish punktini ochish</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="footer-heading">Ilovani yuklab olish</h3>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <a href="#footerSection" class="app-store-badge">
+              <i class="bi bi-apple fs-5"></i>
+              <span>AppStore</span>
+            </a>
+            <a href="#footerSection" class="app-store-badge">
+              <i class="bi bi-google-play fs-5"></i>
+              <span>Google Play</span>
+            </a>
+          </div>
+          <h3 class="footer-heading">Qanot ijtimoiy tarmoqlarda</h3>
+          <div class="d-flex gap-2">
+            <a href="#footerSection" class="social-circle" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#footerSection" class="social-circle" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+            <a href="#footerSection" class="social-circle" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#footerSection" class="social-circle" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom border-top pt-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small text-muted">
+        <div class="d-flex gap-3">
+          <a href="#footerSection" class="text-decoration-none text-dark fw-medium">Maxfiylik kelishuvi</a>
+          <a href="#footerSection" class="text-decoration-none text-dark fw-medium">Foydalanuvchi kelishuvi</a>
+        </div>
+        <div>
+          «2026© Qanot Market. Barcha huquqlar himoyalangan»
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav d-lg-none" aria-label="Mobil menyu">
+    <a href="index.html" class="mobile-nav-item active">
+      <i class="bi bi-house-door-fill"></i>
+      <span>Bosh sahifa</span>
+    </a>
+    <a href="catalog.html" class="mobile-nav-item">
+      <i class="bi bi-search"></i>
+      <span>Katalog</span>
+    </a>
+    <a href="cart.html" class="mobile-nav-item position-relative">
+      <i class="bi bi-bag"></i>
+      <span>Savat</span>
+      <span class="mobile-nav-badge d-none" id="mobileCartCount">0</span>
+    </a>
+    <a href="favorites.html" class="mobile-nav-item position-relative">
+      <i class="bi bi-heart"></i>
+      <span>Saralangan</span>
+      <span class="mobile-nav-badge d-none" id="mobileFavCount">0</span>
+    </a>
+    <button type="button" class="mobile-nav-item btn-reset" data-bs-toggle="modal" data-bs-target="#authModal">
+      <i class="bi bi-person"></i>
+      <span>Kabinet</span>
+    </button>
+  </nav>
+
+  <!-- Location Selection Modal -->
+  <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="locationModalLabel">Shahringizni tanlang</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small mb-3">Yetkazib berish muddati va mavjud mahsulotlar shaharga qarab farq qilishi mumkin.</p>
+          <div class="row g-2" id="cityOptionsGrid">
+            <div class="col-6"><button type="button" class="city-option-btn active" data-city="Toshkent">Toshkent</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Samarqand">Samarqand</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Buxoro">Buxoro</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Andijon">Andijon</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Farg‘ona">Farg‘ona</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Namangan">Namangan</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Urganch">Urganch</button></div>
+            <div class="col-6"><button type="button" class="city-option-btn" data-city="Nukus">Nukus</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth / Profile Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content rounded-4 border-0 shadow p-2">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="authModalLabel">Telefon raqamini kiriting</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small">Tasdiqlash kodini SMS orqali yuboramiz</p>
+          <form id="authForm">
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0 fw-medium">+998</span>
+                <input type="tel" class="form-control bg-light border-start-0" id="authPhoneInput" placeholder="90 123-45-67" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary-brand w-100 py-2 fw-semibold">Kodni olish</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer" style="z-index: 1090;"></div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <!-- Application Scripts -->
+  <script src="js/products.js" defer></script>
+  <script src="js/favorites.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/search.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
